@@ -1,7 +1,22 @@
-async function getAdvice() {
-    const data = await (await fetch('https://api.adviceslip.com/advice')).json();
+const arenaData =
+    'https://api.are.na/v3
 
-document.getElementById('text').innerText = data.slip.advice;
-} 
+async function getiMAGES() {
+    try {
+        const response = await fetch(arenaData) ;
+        const result = await response.json() ;
+        const items = result.data;
 
-getAdvice();
+    const container =  documeny.getElementById('image-container');
+        container.innerHTML = '';
+
+    items.forEach(block => {
+        const imageURL = block.image?.src;
+
+                  if (imageURL) {
+                      const image = document.createElement('img');
+                      img.src = imageURL;
+                      container.appendChild(img);
+                  }
+    });
+    }
